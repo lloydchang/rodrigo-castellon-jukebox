@@ -103,7 +103,7 @@ class TestRnns(unittest.TestCase):
                           reverse=True)
             # `pack_padded_sequence` breaks if default tensor type is non-CPU
             torch.set_default_tensor_type(torch.FloatTensor)
-            lens = torch.tensor(lens, dtype=torch.int64, device=torch.device('cpu'))
+            lens = torch.tensor(lens, dtype=torch.int64, device=torch.device('mps'))
             packed_seq = nn.utils.rnn.pack_padded_sequence(x, lens)
             torch.set_default_tensor_type(torch.cuda.FloatTensor)
             hidden = torch.zeros((num_layers, self.b, self.h), dtype=typ)
